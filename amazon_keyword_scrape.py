@@ -92,12 +92,19 @@ def get_url(keyword):
         searchbox = driver.find_element(By.XPATH, searchbox_xpath)
         searchbox_search=searchbox.send_keys(keyword)
         searchbox.send_keys(Keys.RETURN)
-        if(not(run_local)):
+        temp_page_source = driver.page_source
+        #print("review page", temp_page_source)
+        captcha_phrase = "To discuss automated access to Amazon data please contact api-services-support@amazon.com."
+        search_url=driver.current_url
+        if(captcha_phrase in temp_page_source):
+            print("****************CAPTCHA AHEAD*******************")
             search_url=driver.current_url
             driver.quit()
-        # delay = randint(5, 20)
-        # time.sleep(delay)
-        # print("done")
+            delay = randint(10, 20)
+            time.sleep(delay)
+            driver=get_driver()
+            driver.get(current_url)
+            
     except Exception as e:
         print("page source in search",driver.page_source)
         print("No searchbox",e, traceback.print_exc())
@@ -185,7 +192,7 @@ def get_url(keyword):
                                     #time.sleep(delay)
                     except Exception as e:
                         #If anything is not available(price, reviewsare missing in some cases i.e sponsored) 
-                        print("Missing Element",e)
+                        print("Missing Element")
             try:
                 #If the first page doesnt have 25 eligible products then go to next page
                 if(observed_products<=total_products):
@@ -196,13 +203,24 @@ def get_url(keyword):
                     delay = randint(10, 20)
                     time.sleep(delay)
             except Exception as e:
-                #print("page sourcen",driver.page_source)
-                print("No Next Page exists",e)
-                #input("next page")
-                driver.quit()
-                break
+                temp_page_source = driver.page_source
+                #print("review page", temp_page_source)
+                captcha_phrase = "To discuss automated access to Amazon data please contact api-services-support@amazon.com."
+                if(captcha_phrase in temp_page_source):
+                    print("****************CAPTCHA AHEAD*******************")
+                    current_url=driver.current_url
+                    driver.quit()
+                    #delay = randint(10, 0)
+                    time.sleep(10)
+                    driver=get_driver()
+                    driver.get(current_url)  
+                else:
+                    print("No next page exists")
+                    driver.quit()
+                    break
+                
         except Exception as e:
-            print("Please Try anyother keyword",e)
+            print("Please Try anyother keyword")
             driver.quit()
             
     today = datetime.today().strftime("%B %d, %Y")

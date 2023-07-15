@@ -55,7 +55,7 @@ def get_driver():
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=chrome_options)
     
     return driver
 #This functions gets a url scrape its title, About info, product description
@@ -72,19 +72,19 @@ def scrape_url(link):
 
     #----------------------------------------------------------------------------- 
     if(not(run_local)):
+        driver=get_driver()
         delay = randint(10, 20)
         time.sleep(delay)
-        driver=get_driver()
         
     driver.get(link)
     print("Link in driver",link)
     delay = randint(10, 20)
     time.sleep(delay)
     temp_page_source = driver.page_source
-    print("Page source", temp_page_source)
     captcha_phrase = "To discuss automated access to Amazon data please contact api-services-support@amazon.com."
     if(captcha_phrase in temp_page_source):
         print("****************CAPTCHA AHEAD0*******************")
+        print("Page source", temp_page_source)
         driver.quit()
         driver=get_driver()
         driver.get(link)  
@@ -106,6 +106,8 @@ def scrape_url(link):
         about_info_xpath = '//div[@id="feature-bullets"]/ul/li/span'
         #wait = WebDriverWait(driver, 20)
         #about_info = wait.until(EC.visibility_of_element_located((By.XPATH, about_info_xpath)))
+        delay = randint(3, 10)
+        time.sleep(delay)
         about_info = driver.find_elements(By.XPATH, about_info_xpath)
         about_text=''
         # Iterate over the list items and get the text of the span elements
@@ -116,9 +118,15 @@ def scrape_url(link):
     except Exception as e:
         about_text="No About text Available"
         print("No about info")
-    if(not(run_local)):
+    temp_page_source = driver.page_source
+    #print("review page", temp_page_source)
+    captcha_phrase = "To discuss automated access to Amazon data please contact api-services-support@amazon.com."
+    if(captcha_phrase in temp_page_source):
+        print("****************CAPTCHA AHEAD*******************")
         current_url=driver.current_url
         driver.quit()
+        #delay = randint(10, 0)
+        time.sleep(10)
         driver=get_driver()
         driver.get(current_url)  
     delay = randint(3, 10)
@@ -128,6 +136,8 @@ def scrape_url(link):
         product_description_xpath = "//div[@id='productDescription']"
         # wait = WebDriverWait(driver, 20)
         # product_description = wait.until(EC.presence_of_element_located((By.XPATH, product_description_xpath)))
+        delay = randint(3, 10)
+        time.sleep(delay)
         product_description = driver.find_element(By.XPATH, product_description_xpath)
         product_description = product_description.text
         print("product_description", product_description)
@@ -153,7 +163,10 @@ def scrape_url(link):
     while (number_of_reviews < 10):
         print("number_of_reviews", number_of_reviews)
         get_dynamic_xpath = 1
-        if(not(run_local)):
+        temp_page_source = driver.page_source
+        #print("review page", temp_page_source)
+        captcha_phrase = "To discuss automated access to Amazon data please contact api-services-support@amazon.com."
+        if(captcha_phrase in temp_page_source):
             current_url=driver.current_url
             driver.quit()
             driver=get_driver()
@@ -169,7 +182,12 @@ def scrape_url(link):
             captcha_phrase = "To discuss automated access to Amazon data please contact api-services-support@amazon.com."
             if(captcha_phrase in temp_page_source):
                 print("****************CAPTCHA AHEAD*******************")
-                break
+                current_url=driver.current_url
+                driver.quit()
+                delay = randint(10, 20)
+                time.sleep(delay)
+                driver=get_driver()
+                driver.get(current_url)
             get_dynamic_xpath = get_dynamic_xpath + 1
             
             try:    
@@ -185,8 +203,20 @@ def scrape_url(link):
                     reviews = reviews + str(review) + '\n \n /// \n \n'
                     number_of_reviews = number_of_reviews + 1
             except Exception as e:
-                print("Error getting review", e)
-                review = ''
+                temp_page_source = driver.page_source
+                #print("review page", temp_page_source)
+                captcha_phrase = "To discuss automated access to Amazon data please contact api-services-support@amazon.com."
+                if(captcha_phrase in temp_page_source):
+                    print("****************CAPTCHA AHEAD*******************")
+                    current_url=driver.current_url
+                    driver.quit()
+                    #delay = randint(10, 0)
+                    time.sleep(10)
+                    driver=get_driver()
+                    driver.get(current_url)  
+                else:
+                    print("Error getting review")
+                    review = ''
                 
         # if there are less than 10 reviews yet then click on next page to get more reviews.
         try:
@@ -196,8 +226,20 @@ def scrape_url(link):
             next_page = wait.until(EC.visibility_of_element_located((By.XPATH, next_page_xpath)))
             driver.get(next_page.get_attribute('href'))
         except Exception as e:
-            print("No next page exists")
-            break
+            temp_page_source = driver.page_source
+            #print("review page", temp_page_source)
+            captcha_phrase = "To discuss automated access to Amazon data please contact api-services-support@amazon.com."
+            if(captcha_phrase in temp_page_source):
+                print("****************CAPTCHA AHEAD*******************")
+                current_url=driver.current_url
+                driver.quit()
+                #delay = randint(10, 0)
+                time.sleep(10)
+                driver=get_driver()
+                driver.get(current_url)  
+            else:
+                print("No next page exists")
+                break
     if(title!="No title"):
         # Create a service object for the Google Drive API.
         drive_service = googleapiclient.discovery.build('drive', 'v3', credentials=credentials)
