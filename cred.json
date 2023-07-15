@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "amazonscraping-390306",
+  "private_key_id": "500f1f0ce337baf042c1115b5c3c6210337b05fb",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDYUI/8fPF0Abzm\n97uu7V2AxcuOfgpLiSGhJekRdgG/F5qGam5PberuZI/YCluBOJTtaZ7bTcxJI6GP\nKOgu6uBeqK7BSl20NQr0D1dbSNiNuSRMcHKCzPAUEj2rKdtPGttqQndcAUZD+bu8\nVnF+45CpFzCpTQAe+1tRKmdm7Pi0jsqPQaW+CoutI0FUJ+Dbr5y1sl4DmBH/R5Rz\nONDCk6V7QZxO3PeQ0iYwYem/6YsYgHOA3SYCsk/B16F2QExs502EK8TSE4eNAjKu\nsb74wF4mXwnyb/b5sBwsWYIxrMF2ziK54n1YLMda6+XMmlM9h6tVgnNclKHIWD3m\nzWUygi0ZAgMBAAECggEAK+YNknv4tEY2A9l6qUFanGuHp99ET5gAzydWaUi9if5M\nScMHp+7yonaeCoXvlAXbk2K/7lmXf7BPdTIkDIF2Dz/EV020PoIVOvpyDAB4kipk\nh266jnjwr+ITycywyRj2NlZOysknbVwdEVepqMqd7PLb2T/bKm5wVcR5P5YP0vRX\n7Pg4GdNH3XsnfZlaHW0EA95Yl0L656pAo1c3VsI/lJD9Qy6EiWrVbWhNtAibxN+J\ngOYtfXX61j2bBhmhbYcXKbV2adnI1QoPYNuWXljQsuKS6Va75HtiIf6KkWhrLDoe\nxa5/CGFIeFx6sdIoEGyJ+4193rstxqQ1dEJ4CjUnkQKBgQDzqhioUONDI5672lyK\nmaNO3rMz6l0Whrjw5EldgsnRwFbgQRx0MmpeIQ0Lg+iMao4D7XJ0ThkQCaGvoWk4\n7vvHyj7MOU7UGLsSCKJV+R0AHKKK4t69/ltF7krbT3wdCshrqgANpHIT3ZgJ66DD\nctO1EQQo4L7L0VT+d53opXYW1wKBgQDjRAMWy2d2aPf9zO4Q6UrfB9dtb5/M/lkL\n2jyfQDhEKXeYetrF5Dr+fSqdyQJ2JK7KayflTCFJ9JB2piuLxTR/eXiOXD+bOWZg\n4ZhlCOSZLI0IzVJzNAMFQh/24TVnleGf99akimDVpH+b2pFuezwxPfWGYSz7RW4I\n1m8TmOGNjwKBgFnAccyt3shAOpvfVu8GoIzQoxmgXiGKBl1U+WEkZ8qHGnkIAr8a\nQuvhKLjxIZt3NFBmCh6lFb4+jfvvbJ64CK4S5Qa8pTii02VVINaiJ/h+k7Cs2HcL\nVftwRsp5gLIB4sklmVdtF0gR+4rL7C+SAEFVvz5/akgRF0mULeof6FuJAoGBAIA5\nL0T9HjLApqqbpPYFqiiL1A/6mr6eAr+dMfbn1NcgTknJhwV/74kGNbUwZCMkLzol\nmyzT9zQyuA85UfhaG3SQpGQtx/VcPVcL8V+P1OpXKHt+3LYC8nFVDZPNHMSE2/fV\nbVUIffoMBbN5bfRXs25U9uIKkcZzNdHmqmT0LM4hAoGAfvkMM52QZdfI8MpJo7WQ\nlRRYy7ytiGe/RSeaPb/clH5tQOu24Sxxo4XGT0NSlmUjOG6VPvcjJiBELkfIjRbB\nvXsoK/+YFNCm5YtfrKDsInBZ3XkVK0ertNHtuAJQAtogeHRoQvKsN649Mw63JckT\nhHzud3NeIktO8+r77Loijzc=\n-----END PRIVATE KEY-----\n",
+  "client_email": "amazonscraping@amazonscraping-390306.iam.gserviceaccount.com",
+  "client_id": "116950568491973292932",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/amazonscraping%40amazonscraping-390306.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
